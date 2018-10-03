@@ -1,12 +1,15 @@
+import scalariform.formatter.preferences._
+
 name := "Apache Spark example"
 
 version := "0.1"
 
 scalaVersion := "2.12.6"
 
-lazy val akkaVersion = "2.5.16"
-lazy val junitJupiter = "5.2.0"
-lazy val junitPlatform = "5.2.0"
+val akkaVersion = "2.5.16"
+val junitJupiter = "5.2.0"
+val junitPlatform = "1.2.0"
+val sparkVersion = "2.3.2"
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.1",
@@ -20,7 +23,14 @@ libraryDependencies ++= Seq(
   "org.junit.platform" % "junit-platform-engine" % junitPlatform % Test,
   "org.junit.platform" % "junit-platform-runner" % junitPlatform % Test,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-  "com.typesafe.akka" %% "akka-testkit" % akkaVersion
+  "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
+  "org.scalariform" %% "scalariform" % "0.2.6",
+  "org.apache.spark" %% "spark-core" % sparkVersion,
+  "org.apache.spark" %% "spark-sql" % sparkVersion,
+  "org.apache.spark" %% "spark-mllib" % sparkVersion,
+  "org.apache.spark" %% "spark-streaming" % sparkVersion,
+  "org.apache.spark" %% "spark-hive" % sparkVersion,
+  "mysql" % "mysql-connector-java" % "5.1.6"
 )
 
 testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
@@ -28,9 +38,15 @@ testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
 parallelExecution in Test := false
 
 resolvers ++= Seq(
-  Resolver.sonatypeRepo("snapshots"),
-  Resolver.sbtPluginRepo("snapshots"),
-  Resolver.typesafeIvyRepo("snapshots"),
-  Resolver.jcenterRepo,
-  Classpaths.typesafeReleases
+  DefaultMavenRepository,
+  Classpaths.typesafeReleases,
+//  Resolver.sonatypeRepo("snapshots"),
+//  Resolver.jcenterRepo
 )
+
+scalariformPreferences := scalariformPreferences.value
+  .setPreference(AlignSingleLineCaseStatements, true)
+  .setPreference(DoubleIndentConstructorArguments, true)
+  .setPreference(DanglingCloseParenthesis, Preserve)
+scalariformAutoformat := true
+scalariformWithBaseDirectory := true

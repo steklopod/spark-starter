@@ -1,6 +1,6 @@
 package ru.example
 
-import org.scalatest.{BeforeAndAfterAll, FunSpec}
+import org.scalatest.{ BeforeAndAfterAll, FunSpec }
 
 class BeforeAllTest extends FunSpec with BeforeAndAfterAll {
 
