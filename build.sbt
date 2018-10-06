@@ -9,6 +9,8 @@ val akkaVersion   = "2.5.16"
 scalaVersion := "2.11.12"
 
 libraryDependencies ++= Seq(
+  "com.typesafe.akka"      %% "akka-actor"               % akkaVersion,
+  "com.typesafe.akka"      %% "akka-testkit"             % akkaVersion,
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.1",
   "org.scalatest"          %% "scalatest"                % "3.2.0-SNAP10" % Test,
   "org.scalacheck"         %% "scalacheck"               % "1.14.0" % "test",
@@ -19,8 +21,6 @@ libraryDependencies ++= Seq(
   "org.junit.platform"     % "junit-platform-launcher"   % junitPlatform % Test,
   "org.junit.platform"     % "junit-platform-engine"     % junitPlatform % Test,
   "org.junit.platform"     % "junit-platform-runner"     % junitPlatform % Test,
-  "com.typesafe.akka"      %% "akka-actor"               % akkaVersion,
-  "com.typesafe.akka"      %% "akka-testkit"             % akkaVersion,
   "mysql"                  % "mysql-connector-java"      % "5.1.6",
   "org.apache.spark"       %% "spark-core"               % sparkVersion,
   "org.apache.spark"       %% "spark-streaming"          % sparkVersion,

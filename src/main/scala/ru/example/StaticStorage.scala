@@ -5,6 +5,7 @@ import org.apache.spark.SparkContext
 
 object StaticStorage {
 
+  //значение мастера 2-ом аргументе
   def getMaster(args: Array[String]): String = {
     val master = args.length match {
       case x: Int if x > 0 => args(0)
@@ -26,8 +27,8 @@ object StaticStorage {
         sc.parallelize(List("1", "2", "3", "4"))
     }
 
-  //читаем файл, переданный во втором аргументе
-  def getInput(args: Array[String], sc: SparkContext) = args.length match {
+  //читаем файл, переданный во 2-ом аргументе
+  def getInputFile(args: Array[String], sc: SparkContext) = args.length match {
     case x: Int if x > 1 => sc.textFile(args(1))
     case _               => defaultTextFile(sc)
   }
